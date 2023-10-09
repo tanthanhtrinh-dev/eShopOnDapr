@@ -96,6 +96,5 @@ public class UserBasket
         OnItemsChanged(EventArgs.Empty);
     }
 
-    private void OnItemsChanged(EventArgs e)
-        => ItemsChanged?.Invoke(this, e);
+    private void OnItemsChanged(EventArgs e) => ItemsChanged?.Invoke(this, e);
 }

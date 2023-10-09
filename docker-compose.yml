@@ -134,3 +134,6 @@ services:
 
   dapr-placement:
     image: "daprio/dapr:1.9.4"
+
+  dapr-dashboard:
+    image: "daprio/dashboard:latest"

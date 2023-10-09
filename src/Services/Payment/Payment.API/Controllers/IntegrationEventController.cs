@@ -10,6 +10,5 @@ public class IntegrationEventController : ControllerBase
     [Topic(DAPR_PUBSUB_NAME, nameof(OrderStatusChangedToValidatedIntegrationEvent))]
     public Task HandleAsync(
         OrderStatusChangedToValidatedIntegrationEvent @event,
-        [FromServices] OrderStatusChangedToValidatedIntegrationEventHandler handler) =>
-        handler.Handle(@event);
+        [FromServices] OrderStatusChangedToValidatedIntegrationEventHandler handler) => handler.Handle(@event);
 }

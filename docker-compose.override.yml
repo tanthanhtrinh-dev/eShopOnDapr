@@ -13,8 +13,12 @@ services:
       - "1025:1025"
 
   rabbitmq:
+    environment:
+      - RABBITMQ_DEFAULT_USER=guest
+      - RABBITMQ_DEFAULT_PASS=guest
     ports:
       - "5672:5672"
+      - "15672:15672"
 
   redis:
     image: redis:alpine
@@ -235,6 +239,14 @@ services:
     command: ["./placement", "-port", "50000", "-log-level", "debug"]
     ports:
       - "50000:50000"
+
+  dapr-dashboard:   
+    command: [ "--docker-compose=true", 
+      "--components-path=./components", 
+      "--config-path=./configuration", 
+      "--docker-compose-path=./docker-compose.yml" ]
+    ports:
+      - "8080:8080"
 
 volumes:
   eshop-sqldata:

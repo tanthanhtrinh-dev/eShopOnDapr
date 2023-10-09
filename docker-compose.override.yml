@@ -17,8 +17,10 @@ services:
       - RABBITMQ_DEFAULT_USER=guest
       - RABBITMQ_DEFAULT_PASS=guest
     ports:
-      - "5672:5672"
-      - "15672:15672"
+      - "5672:5672" # host mq
+      - "15672:15672" # dashboard
+    volumes:
+      - "./docker_compose/rabbitmq/:/var/lib/rabbitmq"
 
   redis:
     image: redis:alpine
@@ -38,7 +40,7 @@ services:
     ports:
       - "5433:1433"
     volumes:
-      - eshop-sqldata:/var/opt/mssql
+      - "./docker_compose/eshop-sqldata:/var/opt/mssql"
 
   zipkin:
     ports:
@@ -247,6 +249,10 @@ services:
       "--docker-compose-path=./docker-compose.yml" ]
     ports:
       - "8080:8080"
+    volumes:
+      - "./docker_compose/dapr/components/:/home/nonroot/components"
+      - "./docker_compose/dapr/config/:/home/nonroot/configuration"
+      - ./docker-compose.yml:/home/nonroot/docker-compose.yml
 
 volumes:
   eshop-sqldata:

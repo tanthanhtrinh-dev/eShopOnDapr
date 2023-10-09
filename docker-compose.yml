@@ -137,3 +137,4 @@ services:
 
   dapr-dashboard:
     image: "daprio/dashboard:latest"
+
